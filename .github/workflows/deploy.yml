@@ -71,5 +71,5 @@ jobs:
       uses: aws-actions/amazon-ecs-roll-back-task-definition@v1
       with:
         task-definition: my-task-def
-        service: my-service
-        cluster: my-cluster
+        service: myservice
+        cluster: anup
