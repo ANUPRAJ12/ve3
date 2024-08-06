@@ -20,11 +20,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build --build-arg ENV=production -t ${{ aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 024848455063.dkr.ecr.ap-southeast-2.amazonaws.com }}:${{ github.sha }} -f Dockerfile .
+          docker build --build-arg ENV=production -t ${{ secrets.ECR_REPOSITORY_URI }}:${{ github.sha }} -f Dockerfile .
         
       - name: Push Docker image
         run: |
-          docker push ${{ aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 024848455063.dkr.ecr.ap-southeast-2.amazonaws.com }}:${{ github.sha }}
+          docker push ${{ secrets.ECR_REPOSITORY_URI }}:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
